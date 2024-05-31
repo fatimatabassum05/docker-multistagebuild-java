@@ -24,7 +24,7 @@ pipeline{
         stage('Build docker Image'){
           agent {label 'docker_node_new'}
           steps{
-            sh 'docker build -t fatimatabassum/fatima12:${BUILD_NUMBER}'
+            sh 'docker build -t fatimatabassum/fatima12:${BUILD_NUMBER} .'
           }
         }
         stage('Push To Dockerhub'){
