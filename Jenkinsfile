@@ -30,7 +30,7 @@ pipeline{
         stage('Push To Dockerhub'){
           agent {label 'docker_node_new'}
           steps{
-            sh 'docker push -t fatimatabassum/fatima12:${BUILD_NUMBEER}'
+            sh 'docker push fatimatabassum/fatima12:${BUILD_NUMBEER}'
           }
         }
         stage('Deploy Stage') {
