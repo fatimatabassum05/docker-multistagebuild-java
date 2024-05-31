@@ -36,7 +36,7 @@ pipeline{
         stage('Deploy Stage') {
           agent {label 'docker_node_new'}
           steps{
-            sh 'docker run -d -p 80:8080 fatimatabassum/fatima12:${BUILD_NUMBER}'
+            sh 'docker run fatimatabassum/fatima12:${BUILD_NUMBER}'
           } 
         }
     }
