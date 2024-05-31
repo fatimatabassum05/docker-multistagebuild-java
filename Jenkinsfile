@@ -10,14 +10,14 @@ pipeline{
        stage('Build Stage'){
             agent {label 'sonar_node'}
             steps{
-                sh '/opt/apache-maven-3.9.6/bin/mvn clean install'
+                sh 'mvn clean install'
             }
          }
         stage('SonarQube Analysis Stage') {
             agent {label 'sonar_node'}
             steps{
                 withSonarQubeEnv('sonar_node') { 
-                    sh "/opt/apache-maven-3.9.6/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonarqube_1"
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sonarqube_1"
                 }
             }
         }
