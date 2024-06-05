@@ -28,12 +28,8 @@ pipeline{
           }
         }
         stage('Push To Dockerhub'){
-          environment {
-            DOCKER_CREDENTIALS=credentials('ecr-cred')
-          }
           agent {label 'k8s_node'}
           steps{
-            sh 'docker login -u ${DOCKER_CREDENTIALS_USR} -p {DOCKER_CREDENTIALS_PSW}'
             sh 'docker push fatimatabassum/fatima12:${BUILD_NUMBER}'
           }
         }
