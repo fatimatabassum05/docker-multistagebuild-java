@@ -16,4 +16,4 @@ spec:
     - name: openjdk-container
       image: fatimatabassum/fatima12:latest
       ports:
-      - containerPort: tcp
+      - containerPort: 80
