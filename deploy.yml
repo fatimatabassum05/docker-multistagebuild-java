@@ -9,11 +9,11 @@ spec:
       app: openjdk
   template:
     metadata:
-      name: openjdk
       labels:
         app: openjdk
-    containers:
-    - name: openjdk-container
-      image: fatimatabassum/fatima12:latest
-      ports:
-      - containerPort: 80
+    spec:
+      containers:
+        - name: openjdk-container
+          image: fatimatabassum/fatima12:latest
+          ports:
+            - containerPort: 80
