@@ -24,7 +24,7 @@ pipeline{
         stage('Build docker Image'){
           agent {label 'k8s_node'}
           steps{
-            sh 'docker build -t fatimatabassum/fatima12:${BUILD_NUMBER} .'
+            sh 'sudo docker build -t fatimatabassum/fatima12:${BUILD_NUMBER} .'
           }
         }
         stage('Push To Dockerhub'){
