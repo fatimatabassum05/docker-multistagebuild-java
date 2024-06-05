@@ -7,20 +7,6 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/fatimatabassum05/sonarqube-example.git'
             }
          }        
-       stage('Build Stage'){
-            agent {label 'sonar_node'}
-            steps{
-                sh 'mvn clean install'
-            }
-         }
-        stage('SonarQube Analysis Stage') {
-            agent {label 'sonar_node'}
-            steps{
-                withSonarQubeEnv('sonarqube_1') { 
-                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sonarqube_1"
-                }
-            }
-        }
         stage('Build docker Image'){
           agent {label 'docker_node_new'}
           steps{
