@@ -22,15 +22,15 @@ pipeline{
             }
         }
         stage('Build docker Image'){
-          agent {label 'k8s_node'}
+          agent {label 'docker_node_new'}
           steps{
-            sh 'sudo docker build -t fatimatabassum/fatima12:${BUILD_NUMBER} .'
+            sh 'docker build -t fatimatabassum/fatima12:${BUILD_NUMBER} .'
           }
         }
         stage('Push To Dockerhub'){
-          agent {label 'k8s_node'}
+          agent {label 'docker_node_new'}
           steps{
-            sh 'sudo docker push fatimatabassum/fatima12:${BUILD_NUMBER}'
+            sh 'docker push fatimatabassum/fatima12:${BUILD_NUMBER}'
           }
         }
         stage('Deploy Stage') {
