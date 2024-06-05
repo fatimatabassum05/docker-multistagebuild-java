@@ -1,0 +1,44 @@
+pipeline{
+    agent none
+    stages{
+       stage('Git Checkout Stage'){
+            agent {label 'sonar_node'}
+            steps{
+                git branch: 'main', url: 'https://github.com/fatimatabassum05/sonarqube-example.git'
+            }
+         }        
+       stage('Build Stage'){
+            agent {label 'sonar_node'}
+            steps{
+                sh 'mvn clean install'
+            }
+         }
+        stage('SonarQube Analysis Stage') {
+            agent {label 'sonar_node'}
+            steps{
+                withSonarQubeEnv('sonarqube_1') { 
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sonarqube_1"
+                }
+            }
+        }
+        stage('Build docker Image'){
+          agent {label 'k8s_node'}
+          steps{
+            sh 'docker build -t fatimatabassum/fatima12:${BUILD_NUMBER} .'
+          }
+        }
+        stage('Push To Dockerhub'){
+          agent {label 'k8s_node'}
+          steps{
+            sh 'docker push fatimatabassum/fatima12:${BUILD_NUMBER}'
+          }
+        }
+        stage('Deploy Stage') {
+          agent {label 'k8s_node'}
+          steps{
+            sh 'kubectl apply -f deploy.yml'
+            sh 'kubectl apply -f service.yml'
+          } 
+        }
+    }
+}
