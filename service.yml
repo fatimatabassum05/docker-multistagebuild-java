@@ -8,5 +8,5 @@ spec:
     labels:
       app: openjdk
   ports:
-    targetPort: tcp
-    port: tcp
+    targetPort: 80
+    port: 80
