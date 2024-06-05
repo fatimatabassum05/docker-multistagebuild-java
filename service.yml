@@ -1,12 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: openjdk-svc
+  name: openjdk-cip
 spec:
   type: ClusterIP
   selector:
-    labels:
-      app: openjdk
+    app: openjdk
   ports:
+  - port: 80
     targetPort: 80
-    port: 80
