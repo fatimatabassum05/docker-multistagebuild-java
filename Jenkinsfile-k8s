@@ -36,7 +36,7 @@ pipeline{
         stage('Deploy Stage') {
           agent {label 'k8s_node'}
           steps{
-            sh 'sudo /home/ubuntu/.local/state/vs-kubernetes/tools/kubectl/kubectl apply -f deploy.yml -f node.yml--validate=false'
+            sh 'sudo /home/ubuntu/.local/state/vs-kubernetes/tools/kubectl/kubectl apply -f deploy.yml--validate=false'
             sh 'sudo /home/ubuntu/.local/state/vs-kubernetes/tools/kubectl/kubectl apply -f service.yml --validate=false'
           } 
         }
