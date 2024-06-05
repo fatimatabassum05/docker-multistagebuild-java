@@ -1,7 +1,7 @@
 pipeline{
     agent none
     environment{
-        IMAGE=${BUILD_NUMBER}
+        IMAGE_TAG = "${BUILD_NUMBER}"
     }
     stages{
        stage('Git Checkout Stage'){
@@ -13,13 +13,13 @@ pipeline{
         stage('Build docker Image'){
           agent {label 'docker_node_new'}
           steps{
-            sh 'docker build -t fatimatabassum/fatima12:IMAGE .'
+            sh 'docker build -t fatimatabassum/fatima12:IMAGE_TAG .'
           }
         }
         stage('Push To Dockerhub'){
           agent {label 'docker_node_new'}
           steps{
-            sh 'docker push fatimatabassum/fatima12:IMAGE'
+            sh 'docker push fatimatabassum/fatima12:IMAGE_TAG'
           }
         }
         stage('Deploy Stage') {
