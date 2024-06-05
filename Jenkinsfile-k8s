@@ -36,8 +36,8 @@ pipeline{
         stage('Deploy Stage') {
           agent {label 'k8s_node'}
           steps{
-            sh '/home/ubuntu/.local/state/vs-kubernetes/tools/kubectl apply -f deploy.yml'
-            sh '/home/ubuntu/.local/state/vs-kubernetes/tools/kubectl apply -f service.yml'
+            sh 'sudo /home/ubuntu/.local/state/vs-kubernetes/tools/kubectl apply -f deploy.yml'
+            sh 'sudo /home/ubuntu/.local/state/vs-kubernetes/tools/kubectl apply -f service.yml'
           } 
         }
     }
