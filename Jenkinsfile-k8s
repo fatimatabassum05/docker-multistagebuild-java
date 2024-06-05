@@ -2,7 +2,7 @@ pipeline{
     agent none
     stages{
        stage('Git Checkout Stage'){
-            agent {label 'sonar_node'}
+            agent {label 'docker_node_new'}
             steps{
                 git branch: 'main', url: 'https://github.com/fatimatabassum05/sonarqube-example.git'
             }
